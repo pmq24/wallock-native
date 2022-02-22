@@ -1,10 +1,17 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { UserScreen } from "./views/screens";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <Text>Hello World</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="User" component={UserScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
