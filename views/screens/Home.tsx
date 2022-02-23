@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { UserScreen } from ".";
+import Menu from "./menu/Menu";
 
 namespace Home {
   const Tab = createBottomTabNavigator();
@@ -10,7 +10,7 @@ namespace Home {
     return (
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="User" component={UserScreen} />
+          <Tab.Screen name={Menu.NAME} component={Menu.Screen} />
         </Tab.Navigator>
       </NavigationContainer>
     );
