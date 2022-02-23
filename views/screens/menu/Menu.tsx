@@ -16,17 +16,29 @@ namespace Menu {
 
   const Stack = createNativeStackNavigator<ScreensParams>();
 
-  export function Screen() {
+  export type NavProp = NativeStackNavigationProp<ScreensParams>;
+
+  type ScreenProp = {
+    navigation: NavProp;
+  };
+
+  export function Screen({ navigation }: ScreenProp) {
+    useLayoutEffect(() => hideHeader());
+
     return (
       <Stack.Navigator initialRouteName={Main.NAME}>
         <Stack.Screen name={Main.NAME} component={Main.Screen} />
         <Stack.Screen name={Groups.NAME} component={Groups.Screen} />
       </Stack.Navigator>
     );
-  }
 
-  export type NavProp = NativeStackNavigationProp<ScreensParams>;
+    function hideHeader() {
+      navigation.setOptions({ headerShown: false });
+    }
+  }
 }
+
+export default Menu;
 
 namespace Main {
   export const NAME = "Main";
@@ -38,15 +50,18 @@ namespace Main {
   };
 
   export function Screen({ navigation }: ScreenProp) {
+    useLayoutEffect(() => setHeaderTitle("Menu"));
     return (
       <SafeAreaView>
         <Button
-          title="Categories"
+          title="Groups"
           onPress={() => navigation.navigate(Groups.NAME)}
         />
       </SafeAreaView>
     );
+
+    function setHeaderTitle(title: string) {
+      navigation.setOptions({ headerTitle: title });
+    }
   }
 }
-
-export default Menu;

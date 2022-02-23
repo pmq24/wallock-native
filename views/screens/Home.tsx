@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import Menu from "./menu/Menu";
+import { Menu } from "./menu";
 
 namespace Home {
   const Tab = createBottomTabNavigator();
