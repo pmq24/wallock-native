@@ -1,11 +1,6 @@
 import React from "react";
-
-import { SafeAreaView, Text } from "react-native";
+import { RootScreen } from "./views/screens";
 
 export default function App() {
-  return (
-    <SafeAreaView>
-      <Text>Hello World</Text>
-    </SafeAreaView>
-  );
+  return <RootScreen />;
 }
