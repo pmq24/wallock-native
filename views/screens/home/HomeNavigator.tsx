@@ -2,9 +2,10 @@ import React from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { HomeNavigatorParamList } from "../NavigationTypes";
 import { MenuNavigator, TransactionsScreen } from "..";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<HomeNavigatorParamList>();
 
 export default function HomeNavigator() {
   return (

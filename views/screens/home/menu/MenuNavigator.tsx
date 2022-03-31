@@ -2,9 +2,10 @@ import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { MenuNavigatorParamList } from "../../NavigationTypes";
 import { GroupsScreen, MenuScreen } from "../..";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<MenuNavigatorParamList>();
 
 export default function MenuNavigator() {
   return (
