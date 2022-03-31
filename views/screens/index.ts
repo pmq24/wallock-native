@@ -1,1 +1,1 @@
-export { default as RootScreen } from "./RootScreen";
+export { default as RootNavigator } from "./RootNavigator";

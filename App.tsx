@@ -1,6 +1,13 @@
 import React from "react";
-import { RootScreen } from "./views/screens";
+
+import { NavigationContainer } from "@react-navigation/native";
+
+import { RootNavigator } from "./views/screens";
 
 export default function App() {
-  return <RootScreen />;
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
+  );
 }
