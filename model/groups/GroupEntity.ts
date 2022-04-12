@@ -1,5 +1,5 @@
 export type GroupEntity = {
-  id: number;
+  _id: string;
   name: string;
   parentId: number | null /* null means `NoParent` */;
 };
