@@ -1,7 +1,7 @@
-export default class GroupEntity {
-  public constructor(
-    public id: Number,
-    public name: String,
-    public parentId: Number | null /* null means `NoParent` */
-  ) {}
-}
+export type GroupEntity = {
+  id: number;
+  name: string;
+  parentId: number | null /* null means `NoParent` */;
+};
+
+export default GroupEntity;
