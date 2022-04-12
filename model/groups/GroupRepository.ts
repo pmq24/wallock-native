@@ -1,16 +1,15 @@
-import DbInstance from "model/DbInstance";
-import { Database } from "../DbTypes";
+import { connectToDatabase, Database } from "model/database";
 import { GroupCreationDto } from "./GroupCreationDto";
 import GroupEntity from "./GroupEntity";
 
 export default class GroupRepository {
-  public constructor(dbName: string) {
-    this.dbInstance = new DbInstance(dbName);
+  public constructor(databaseName: string) {
+    this.database = connectToDatabase(databaseName);
   }
 
   public async create(groupCreationDto: GroupCreationDto) {
-    this.dbInstance.post({ _id: "", ...groupCreationDto });
+    this.database.post({ _id: "", ...groupCreationDto });
   }
 
-  private dbInstance: Database<GroupEntity>;
+  private database: Database<GroupEntity>;
 }
