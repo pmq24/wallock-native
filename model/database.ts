@@ -8,3 +8,4 @@ export function connectToDatabase<EntityType>(
 }
 
 export type Database<T> = PouchDB.Database<T>;
+export type FindResponse<T> = PouchDB.Find.FindResponse<T>;

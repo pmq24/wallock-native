@@ -1,40 +1,48 @@
-import GroupRepository from "model/groups/GroupRepository";
-import GroupEntity from "model/groups/GroupEntity";
+import { connectToDatabase, Database, FindResponse } from "model/database";
 import { GroupCreationDto } from "model/groups/GroupCreationDto";
+import GroupEntity from "model/groups/GroupEntity";
+import GroupRepository from "model/groups/GroupRepository";
 
-const PouchDB = require("pouchdb");
+const DATABASE_NAME = "test-db";
 
-const testDbInstance: PouchDB.Database = new PouchDB("wallock-test-db");
-const testGroupRepository: GroupRepository = new GroupRepository(
-  testDbInstance
-);
+let groupRepository: GroupRepository | null = null;
+let database: Database<GroupEntity> | null = null;
 
 beforeAll(async () => {
-  expect(testDbInstance).toBeDefined();
-  expect(testGroupRepository).toBeDefined();
+  groupRepository = new GroupRepository(DATABASE_NAME);
+  database = connectToDatabase<GroupEntity>(DATABASE_NAME);
 });
 
 afterAll(async () => {
-  testDbInstance.destroy();
+  database!.destroy();
 });
 
 test("Create group", async () => {
-  const groupCreationDto: GroupCreationDto = {
-    name: "Test group",
-    parentId: null,
-  };
+  if (groupRepository === null || database === null) {
+    fail("`groupRepository` or `database` is null");
+  } else {
+    const NAME = "Group 1";
+    const PARENT_ID = null;
 
-  await testGroupRepository.create(groupCreationDto);
+    const groupCreationDto: GroupCreationDto = {
+      name: NAME,
+      parentId: PARENT_ID,
+    };
 
-  const allDocs: PouchDB.Core.AllDocsResponse<GroupEntity> =
-    await testDbInstance.allDocs({ include_docs: true });
+    await groupRepository.create(groupCreationDto);
 
-  const createdGroupEntity: GroupEntity | undefined = allDocs.rows[0]?.doc;
+    const findResponse: FindResponse<GroupEntity> = await database.find({
+      selector: { name: { $eq: NAME } },
+    });
 
-  expect(allDocs.total_rows).toBe(1);
-  expect(createdGroupEntity).toBeDefined();
-  expect(createdGroupEntity?.name).toBe("Test group");
-  expect(createdGroupEntity?.parentId).toBe(null);
+    expect(findResponse.docs.length).toBeGreaterThan(0);
+
+    const groupEntity: GroupEntity = findResponse.docs[0];
+
+    expect(groupEntity).toBeDefined();
+    expect(groupEntity.name).toEqual(NAME);
+    expect(groupEntity.parentId).toEqual(PARENT_ID);
+  }
 });
 
 export {};
