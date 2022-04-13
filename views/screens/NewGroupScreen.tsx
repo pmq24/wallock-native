@@ -1,10 +1,27 @@
-import React from "react";
-import { SafeAreaView, Text } from "react-native";
+import React, { useLayoutEffect } from "react";
+import { Button, SafeAreaView, View } from "react-native";
+import { Flex, GroupPicker, IconPicker, TextField } from "../components";
+import { RootNavigatorScreenProps } from "./NavigationTypes";
 
-export default function NewGroupScreen() {
+type Props = RootNavigatorScreenProps<"NewGroupScreen">;
+
+export default function NewGroupScreen(props: Props) {
+  useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerTitle: "New group",
+      headerRight: () => <Button title="Save" />,
+    });
+  });
+
   return (
-    <SafeAreaView>
-      <Text>New group screen</Text>
+    <SafeAreaView style={{ margin: 16 }}>
+      <Flex direction="row" justifyContent="space-between">
+        <IconPicker />
+        <View style={{ flex: 1 }}>
+          <TextField label="Group name" />
+        </View>
+      </Flex>
+      <GroupPicker label="Parent group" />
     </SafeAreaView>
   );
 }

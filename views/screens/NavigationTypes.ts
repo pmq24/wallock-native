@@ -5,6 +5,10 @@ export type RootNavigatorParamList = {
   NewGroupScreen: undefined;
 };
 
+export type RootNavigatorScreenProps<
+  Route extends keyof RootNavigatorParamList
+> = NativeStackScreenProps<RootNavigatorParamList, Route>;
+
 export type HomeNavigatorParamList = {
   TransactionsScreen: undefined;
   MenuNavigator: undefined;
