@@ -3,6 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type RootNavigatorParamList = {
   HomeNavigator: undefined;
   NewGroupScreen: undefined;
+  TestScreen: undefined;
 };
 
 export type RootNavigatorScreenProps<
