@@ -1,12 +1,16 @@
 import React from "react";
 
-import { Button, Icon } from "@rneui/themed";
+import { Button, Icon, Text } from "@rneui/themed";
+import { Flex } from ".";
 
 export default function IconPicker() {
   return (
-    <Button
-      icon={<Icon name="question" size={16} />}
-      buttonStyle={{ width: 40, height: 40, borderRadius: 100 }}
-    />
+    <Flex alignItems="center">
+      <Button
+        icon={<Icon name="question" size={24} />}
+        buttonStyle={{ width: 48, height: 48, borderRadius: 50 }}
+      />
+      <Text>Pick icon</Text>
+    </Flex>
   );
 }
