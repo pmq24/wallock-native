@@ -14,13 +14,9 @@ export default function NewGroupScreen(props: Props) {
   });
 
   return (
-    <SafeAreaView style={{ margin: 16 }}>
-      <Flex direction="row" justifyContent="space-between">
-        <IconPicker />
-        <View style={{ flex: 1 }}>
-          <TextField label="Group name" />
-        </View>
-      </Flex>
+    <SafeAreaView style={{ padding: 24 }}>
+      <IconPicker />
+      <TextField label="Group name" />
       <GroupPicker label="Parent group" />
     </SafeAreaView>
   );

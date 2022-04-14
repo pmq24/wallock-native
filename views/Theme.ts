@@ -12,12 +12,8 @@ const Theme: CreateThemeOptions = createTheme({
       padding: 16,
       paddingRight: 12,
     },
-    leftIconContainerStyle: {
-      padding: 0,
-    },
-
-    rightIconContainerStyle: {
-      padding: 0,
+    containerStyle: {
+      paddingHorizontal: 0,
     },
   },
 });
