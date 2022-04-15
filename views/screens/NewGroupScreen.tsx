@@ -1,6 +1,9 @@
 import React, { useLayoutEffect } from "react";
-import { Button, SafeAreaView, View } from "react-native";
-import { Flex, GroupPicker, IconPicker, TextField } from "../components";
+import { Button, SafeAreaView, View, Text } from "react-native";
+
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { TextField } from "../components";
 import { RootNavigatorScreenProps } from "./NavigationTypes";
 
 type Props = RootNavigatorScreenProps<"NewGroupScreen">;
@@ -15,9 +18,40 @@ export default function NewGroupScreen(props: Props) {
 
   return (
     <SafeAreaView style={{ padding: 24 }}>
-      <IconPicker />
-      <TextField label="Group name" />
-      <GroupPicker label="Parent group" />
+      <Formik
+        initialValues={{
+          groupName: "",
+        }}
+        validationSchema={Yup.object().shape({
+          groupName: Yup.string().required("Required").min(1, "Required"),
+        })}
+        onSubmit={(values) => console.log(values)}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          isValid,
+        }) => (
+          <View>
+            <TextField
+              label="Group name"
+              onChangeText={handleChange("groupName")}
+              onBlur={handleBlur("groupName")}
+              value={values.groupName}
+              errorMessage={errors.groupName}
+            />
+            <TextField
+              label="Group name"
+              onChangeText={handleChange("groupName")}
+              onBlur={handleBlur("groupName")}
+              value={values.groupName}
+            />
+          </View>
+        )}
+      </Formik>
     </SafeAreaView>
   );
 }
