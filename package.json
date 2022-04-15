@@ -16,12 +16,14 @@
     "@react-navigation/native-stack": "^6.5.0",
     "@rneui/base": "^4.0.0-rc.1",
     "@rneui/themed": "^4.0.0-rc.1",
+    "formik": "^2.2.9",
     "pouchdb": "^7.2.2",
     "react": "17.0.2",
     "react-native": "0.67.2",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.13.0",
-    "react-native-vector-icons": "^9.1.0"
+    "react-native-vector-icons": "^9.1.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
