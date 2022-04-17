@@ -3,7 +3,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { RootNavigatorParamList } from "./NavigationTypes";
-import { HomeNavigator, NewGroupScreen, TestScreen } from ".";
+import { HomeNavigator, NewGroupScreen } from ".";
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
@@ -12,7 +12,6 @@ export default function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="HomeNavigator" component={HomeNavigator} />
       <Stack.Screen name="NewGroupScreen" component={NewGroupScreen} />
-      <Stack.Screen name="TestScreen" component={TestScreen} />
     </Stack.Navigator>
   );
 }
