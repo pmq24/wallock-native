@@ -5,13 +5,13 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { TextField } from "../components";
 import { RootNavigatorScreenProps } from "./NavigationTypes";
-import VaultContext from "../../model/VaultContext";
 import Vault from "../../model/Vault";
+import VaultContext from "../../model/VaultContext";
 
 type Props = RootNavigatorScreenProps<"NewGroupScreen">;
 
 export default function NewGroupScreen(props: Props) {
-  const vault = useContext<Vault>(VaultContext);
+  const vault = useContext<Vault | undefined>(VaultContext);
 
   useLayoutEffect(() => {
     props.navigation.setOptions({
@@ -33,8 +33,8 @@ export default function NewGroupScreen(props: Props) {
             "isUnique",
             `Group with that name already exists`,
             async (value, _) => {
-              if (!value) return false;
-              return await vault.groups.doesntHaveName(value);
+              if (!vault) return true;
+              return await vault.groups.doesntHaveName(value!);
             }
           ),
       })}

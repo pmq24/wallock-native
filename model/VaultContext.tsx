@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import Vault from "./Vault";
 
-const defaultVault = new Vault("Default Vault");
-const VaultContext = createContext<Vault>(defaultVault);
+const VaultContext = createContext<Vault | undefined>(undefined);
 export default VaultContext;

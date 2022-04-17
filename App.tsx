@@ -7,12 +7,11 @@ import { RootNavigator } from "./views/screens";
 import { navigationRef } from "./views/screens/NavigationContainerRef";
 import { ThemeProvider } from "@rneui/themed";
 import Theme from "./views/Theme";
-import VaultContext from "./model/VaultContext";
-import Vault from "./model/Vault";
+import VaultContextProvider from "./model/VaultContextProvider";
 
 export default function App() {
   return (
-    <VaultContext.Provider value={new Vault("App Vault")}>
+    <VaultContextProvider vaultName="app-database">
       <SafeAreaProvider>
         <ThemeProvider theme={Theme}>
           <NavigationContainer ref={navigationRef}>
@@ -20,6 +19,6 @@ export default function App() {
           </NavigationContainer>
         </ThemeProvider>
       </SafeAreaProvider>
-    </VaultContext.Provider>
+    </VaultContextProvider>
   );
 }
