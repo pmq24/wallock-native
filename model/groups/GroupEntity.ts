@@ -1,6 +1,5 @@
 export type GroupEntity = {
   _id: string;
-  name: string;
-  parentId: string;
+  parentId: string | undefined;
   type: "GROUP";
 };
