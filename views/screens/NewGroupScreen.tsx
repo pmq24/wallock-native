@@ -3,7 +3,7 @@ import { Button, SafeAreaView, View, Text } from "react-native";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { TextField } from "../components";
+import { GroupPicker, TextField } from "../components";
 import { RootNavigatorScreenProps } from "./NavigationTypes";
 import Vault from "../../model/Vault";
 import VaultContext from "../../model/VaultContext";
@@ -49,6 +49,7 @@ export default function NewGroupScreen(props: Props) {
             value={formik.values.groupName}
             errorMessage={formik.errors.groupName}
           />
+          <GroupPicker label="Parent group" />
         </SafeAreaView>
       )}
     </Formik>
