@@ -1,19 +1,18 @@
-import { useNavigation } from "@react-navigation/native";
 import { Input } from "@rneui/themed";
 import React from "react";
+import * as NavigationContainerRef from "../screens/NavigationContainerRef";
 
 type Props = {
   label: string;
 };
 
 export default function GroupPicker(props: Props) {
-  const navigation = useNavigation();
   return (
     <Input
       placeholder={props.label}
       shake={() => {}}
       onFocus={() => {
-        navigation.goBack();
+        NavigationContainerRef.navigate("PickGroupScreen", undefined);
       }}
     />
   );
