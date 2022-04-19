@@ -7,4 +7,5 @@ export function connectToDatabase(name: string): Database {
 }
 
 export type Database = PouchDB.Database;
+export type AllDocsResponse<T> = PouchDB.Core.AllDocsResponse<T>;
 export type FindResponse<T> = PouchDB.Find.FindResponse<T>;

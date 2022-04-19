@@ -1,4 +1,4 @@
-import { Database } from "./Database";
+import { AllDocsResponse, Database } from "./Database";
 import { GroupCreation } from "./groups/GroupCreation";
 import { GroupEntity } from "./groups/GroupEntity";
 
@@ -47,6 +47,20 @@ export default class GroupRepository {
     });
 
     return await this.database.get<GroupEntity>(groupCreation.name);
+  }
+
+  public async getAll(): Promise<GroupEntity[]> {
+    const allDocsRes: AllDocsResponse<GroupEntity> =
+      await this.database.allDocs<GroupEntity>({ include_docs: true });
+
+    return allDocsRes.rows.map((row) => {
+      const groupEnitty: GroupEntity = {
+        _id: row.id,
+        parentId: row.doc!.parentId,
+        type: row.doc!.type,
+      };
+      return groupEnitty;
+    });
   }
 
   public async hasName(nameToCheck: string): Promise<boolean> {
