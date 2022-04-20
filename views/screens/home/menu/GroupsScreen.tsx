@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Button, SafeAreaView, Text } from "react-native";
 
-import * as NavigationContainerRef from "../../NavigationContainerRef";
+import NavigationContainerRef from "../../NavigationContainerRef";
 import { GroupTree } from "../../../components";
 import { MenuNavigatorScreenProps } from "../../NavigationTypes";
 

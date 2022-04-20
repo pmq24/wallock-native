@@ -4,7 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { RootNavigator } from "./views/screens";
-import { navigationRef } from "./views/screens/NavigationContainerRef";
+import NavigationContainerRef from "./views/screens/NavigationContainerRef";
 import { ThemeProvider } from "@rneui/themed";
 import Theme from "./views/Theme";
 import VaultContextProvider from "./model/VaultContextProvider";
@@ -14,7 +14,7 @@ export default function App() {
     <VaultContextProvider vaultName="app-database">
       <SafeAreaProvider>
         <ThemeProvider theme={Theme}>
-          <NavigationContainer ref={navigationRef}>
+          <NavigationContainer ref={NavigationContainerRef.navigationRef}>
             <RootNavigator />
           </NavigationContainer>
         </ThemeProvider>

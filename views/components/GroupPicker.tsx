@@ -1,6 +1,6 @@
 import { Input } from "@rneui/themed";
 import React from "react";
-import * as NavigationContainerRef from "../screens/NavigationContainerRef";
+import NavigationContainerRef from "../screens/NavigationContainerRef";
 
 type Props = {
   label: string;
