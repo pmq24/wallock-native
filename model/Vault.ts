@@ -3,7 +3,13 @@ import GroupRepository from "./GroupRepository";
 
 export default class Vault {
   public static async init(name: string): Promise<Vault> {
-    const vault = new Vault(name);
+    let vault = new Vault(name);
+
+    if (__DEV__) {
+      console.warn("`__DEV__` detected, database will be re-created");
+      vault.destroy();
+      vault = new Vault(name);
+    }
 
     vault._groups = await GroupRepository.init(vault.database);
 
