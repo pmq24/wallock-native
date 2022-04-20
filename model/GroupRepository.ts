@@ -6,25 +6,19 @@ export default class GroupRepository {
   public static async init(database: Database): Promise<GroupRepository> {
     const groupRepo = new GroupRepository(database);
 
-    const dbHasNotBeenCreatedBefore = await groupRepo.doesntHaveName("Root");
+    const dbHasNotBeenCreatedBefore = await groupRepo.doesntHaveName("Income");
 
     if (dbHasNotBeenCreatedBefore) {
       await groupRepo.database.put<GroupEntity>({
         type: "GROUP",
-        _id: "Root",
+        _id: "Income",
         parentId: undefined,
       });
 
       await groupRepo.database.put<GroupEntity>({
         type: "GROUP",
-        _id: "Income",
-        parentId: "Root",
-      });
-
-      await groupRepo.database.put<GroupEntity>({
-        type: "GROUP",
         _id: "Expense",
-        parentId: "Root",
+        parentId: undefined,
       });
     }
 
