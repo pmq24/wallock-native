@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type RootNavigatorParamList = {
   HomeNavigator: undefined;
   NewGroupScreen: undefined;
-  PickGroupScreen: undefined;
+  PickGroupScreen: undefined | { onPicked: (groupName: string) => void };
 };
 
 export type RootNavigatorScreenProps<

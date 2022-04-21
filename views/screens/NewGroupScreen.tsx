@@ -24,6 +24,7 @@ export default function NewGroupScreen(props: Props) {
     <Formik
       initialValues={{
         groupName: "",
+        parentGroupName: "",
       }}
       validationSchema={Yup.object().shape({
         groupName: Yup.string()
@@ -37,6 +38,7 @@ export default function NewGroupScreen(props: Props) {
               return await vault.groups.doesntHaveName(value!);
             }
           ),
+        parentGroupName: Yup.string().required("Required"),
       })}
       onSubmit={(values) => console.log(values)}
     >
@@ -49,7 +51,12 @@ export default function NewGroupScreen(props: Props) {
             value={formik.values.groupName}
             errorMessage={formik.errors.groupName}
           />
-          <GroupPicker label="Parent group" />
+          <GroupPicker
+            label="Parent group"
+            onPicked={formik.handleChange("parentGroupName")}
+            onBlur={formik.handleBlur("parentGroupName")}
+            value={formik.values.parentGroupName}
+          />
         </SafeAreaView>
       )}
     </Formik>
