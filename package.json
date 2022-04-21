@@ -27,7 +27,6 @@
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.13.0",
     "react-native-vector-icons": "^9.1.0",
-    "style-dictionary": "^3.7.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
