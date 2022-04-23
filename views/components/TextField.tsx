@@ -1,5 +1,6 @@
-import { Input } from "@rneui/themed";
-import React, { ChangeEvent } from "react";
+import React from "react";
+import { ChangeEvent } from "react";
+import { HelperText, TextInput } from "react-native-paper";
 
 type Props = {
   label: string;
@@ -11,12 +12,21 @@ type Props = {
 
 export default function TextField(props: Props) {
   return (
-    <Input
-      placeholder={props.label}
-      onChangeText={props.onChangeText}
-      onBlur={props.onBlur}
-      shake={() => {}}
-      errorMessage={props.errorMessage}
-    />
+    <>
+      <TextInput
+        label={props.label}
+        value={props.value}
+        onChangeText={props.onChangeText}
+        onBlur={props.onBlur}
+      />
+      <HelperText
+        type={
+          props.errorMessage && props.errorMessage !== "" ? "error" : "info"
+        }
+        visible={props.errorMessage !== null && props.errorMessage !== ""}
+      >
+        {props.errorMessage}
+      </HelperText>
+    </>
   );
 }

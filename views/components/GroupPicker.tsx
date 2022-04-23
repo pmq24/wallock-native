@@ -1,5 +1,6 @@
 import { Button, ButtonProps, Input } from "@rneui/themed";
 import React from "react";
+import { TextInput } from "react-native-paper";
 import NavigationContainerRef from "../screens/NavigationContainerRef";
 
 type Props = {
@@ -11,35 +12,15 @@ type Props = {
 
 export default function GroupPicker(props: Props) {
   return (
-    <Button
-      {...createStyle(props)}
+    <TextInput
+      label={props.label}
+      value={props.value}
       onBlur={props.onBlur}
-      onPress={() => {
+      onFocus={() => {
         NavigationContainerRef.navigate("PickGroupScreen", {
           onPicked: props.onPicked,
         });
       }}
     />
   );
-}
-
-function createStyle(props: Props): ButtonProps {
-  return {
-    title: props.value !== "" ? props.value : props.label,
-    type: "outline",
-    buttonStyle: {
-      padding: 16,
-      paddingRight: 12,
-      backgroundColor: "#0000",
-      justifyContent: "flex-start",
-      borderWidth: 1,
-      borderRadius: 4,
-      borderColor: "grey",
-    },
-    titleStyle: {
-      fontSize: 16,
-      fontWeight: "100",
-      color: props.value !== "" ? "black" : "grey",
-    },
-  };
 }
