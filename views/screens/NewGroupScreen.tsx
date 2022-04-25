@@ -1,5 +1,7 @@
-import React, { useContext, useLayoutEffect, useRef } from "react";
-import { Button, SafeAreaView } from "react-native";
+import React, { useContext, useLayoutEffect, useRef, useState } from "react";
+import { SafeAreaView } from "react-native";
+
+import { Button } from "react-native-paper";
 
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
@@ -20,11 +22,15 @@ export default function NewGroupScreen(props: Props) {
   const vault = useContext<Vault | undefined>(VaultContext);
   const formikRef = useRef<FormikProps<FormFieldsTypes> | null>(null);
 
+  const [isSaving, setSaving] = useState<boolean>(false);
+
   useLayoutEffect(() => {
     props.navigation.setOptions({
       headerTitle: "New group",
       headerRight: () => (
-        <Button title="Save" onPress={formikRef.current?.submitForm} />
+        <Button loading={isSaving} onPress={formikRef.current?.submitForm}>
+          Save
+        </Button>
       ),
     });
   });
@@ -54,10 +60,13 @@ export default function NewGroupScreen(props: Props) {
             parentGroupName: Yup.string().required("Required"),
           })}
           onSubmit={async (values) => {
-            vault.groups.create({
+            setSaving(true);
+            await vault.groups.create({
               name: values.groupName,
               parentName: values.parentGroupName,
             });
+            setSaving(false);
+            props.navigation.goBack();
           }}
         >
           {(formik) => (
