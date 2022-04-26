@@ -4,6 +4,7 @@ import { SafeAreaView, Text } from "react-native";
 import { GroupEntity } from "../../model/groups/GroupEntity";
 import Vault from "../../model/Vault";
 import VaultContext from "../../model/VaultContext";
+import LoadingIndicator from "../components/LoadingIndicator";
 import { RootNavigatorScreenProps } from "./NavigationTypes";
 
 type Props = RootNavigatorScreenProps<"PickGroupScreen">;
@@ -20,7 +21,9 @@ export default function PickGroupScreen(props: Props) {
 
   return (
     <SafeAreaView>
-      {groups ? (
+      {vault === undefined || groups === undefined ? (
+        <LoadingIndicator />
+      ) : (
         groups.map((group, index) => (
           <ListItem
             key={index}
@@ -34,8 +37,6 @@ export default function PickGroupScreen(props: Props) {
             </ListItem.Content>
           </ListItem>
         ))
-      ) : (
-        <></>
       )}
     </SafeAreaView>
   );
